@@ -27,6 +27,7 @@ class SimpleCsvGateway
 			'bufferSize' => 2000,
 			'skippFirstLine' => true,
 			'fieldDelimiter' => ',',
+			'escapeCharacter' => '\\',
 			'silent' => false,
 			'inputStream' => STDIN,
 			'outputStream' => STDOUT,
@@ -40,7 +41,7 @@ class SimpleCsvGateway
 	protected function readRawData()
 	{
 		$this->currentRow++;
-		return fgetcsv($this->options['inputStream'], $this->options['bufferSize'], $this->options['fieldDelimiter'], escape: "\\");
+		return fgetcsv($this->options['inputStream'], $this->options['bufferSize'], $this->options['fieldDelimiter'], escape: $this->options['escapeCharacter']);
 	}
 
 	protected function message($message)
